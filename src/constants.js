@@ -1,0 +1,4 @@
+export const AUTHENTICATE_USER = "AUTHENTICATE_USER"
+export const LOG_OUT_USER = "LOG_OUT_USER"
+
+export const SHOW_LOGIN_ERROR = "SHOW_LOGIN_ERROR"

@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import "./Login.scss";
 
+// Redux stuff
+import {connect} from "react-redux"
+import {showLoginError, loginUser} from "./LoginActions"
+
+// React-router
+import { withRouter } from 'react-router-dom'
+
+// MaterialUI
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+
+// Data validation
+import { rules } from "./LoginValidation";
+import DataValidator from "../../validation";
 
 const styles = {
     textFields: {
@@ -11,15 +23,33 @@ const styles = {
     buttons: {}
 };
 
+const mapStateToProps = (state) => ({
+    error: state.loginError
+})
+const mapDispatchToProps = (dispatch) => ({
+    loginUser: (identity, password) => dispatch(loginUser(identity, password)),
+    showLoginError: (error) => dispatch(showLoginError(error))
+})
+
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            errors: ""
         };
         this.onEmailChange = this.onEmailChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
+        this.onButtonSubmit = this.onButtonSubmit.bind(this);
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if(props.error) {
+            state.error = props.error
+            props.showLoginError("")
+        }
+        return state
     }
 
     onEmailChange(event) {
@@ -28,6 +58,28 @@ class Login extends Component {
 
     onPasswordChange(event) {
         this.setState({ password: event.target.value });
+    }
+
+    showValidationErrors(validation) {
+        this.setState({error: validation.email.message})
+    }
+
+    validateData() {
+        const validation = new DataValidator(rules);
+        const data = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        return validation.validate(data);
+    }
+
+    onButtonSubmit() {
+        const validation = this.validateData()
+        if(validation.isValid) {
+            this.props.loginUser(this.state.email, this.state.password)
+        } else {
+            this.showValidationErrors(validation)
+        }
     }
 
     render() {
@@ -55,12 +107,16 @@ class Login extends Component {
                             onChange={this.onPasswordChange}
                         />
                     </div>
+                    {Boolean(this.state.error) &&
+                    <p className="login-error">{this.state.error}</p>
+                    }
                     <div className="login-button">
                         <Button
                             variant="contained"
                             color="primary"
                             style={styles.buttons}
                             size="large"
+                            onClick={this.onButtonSubmit}
                         >
                             Log in
                         </Button>
@@ -71,4 +127,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

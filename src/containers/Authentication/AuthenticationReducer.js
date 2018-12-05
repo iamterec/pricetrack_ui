@@ -1,7 +1,4 @@
-import {
-    SIGNUP_SHOW_EMAIL_ERROR,
-    SIGNUP_SHOW_PASSWORD_ERROR
-} from "../../constants";
+import { AUTHENTICATE_USER, LOG_OUT_USER, SHOW_LOGIN_ERROR } from "../../constants";
 
 // const initStateAuthentication = {
 //     emailError: ""
@@ -9,36 +6,26 @@ import {
 const initStateAuthentication = {
     isAuthenticated: false,
     user: {},
-    messages: {
-        email: "",
-        password: ""
-    }
+    loginError: ""
 };
 
-function messages(state = { email: "", password: "" }, action) {
-    switch (action.type) {
-        case SIGNUP_SHOW_EMAIL_ERROR:
-            return { ...state, email: action.payload };
-        case SIGNUP_SHOW_PASSWORD_ERROR:
-            return { ...state, password: action.payload };
-        default:
-            return state;
-    }
+if (window.localStorage.getItem("access_token")) {
+    initStateAuthentication.isAuthenticated = true;
 }
 
 export function authentication(state = initStateAuthentication, action = {}) {
     switch (action.type) {
-        case SIGNUP_SHOW_EMAIL_ERROR:
-            return {
-                ...state,
-                messages: messages(state.messages, action)
-            };
+        case AUTHENTICATE_USER:
+            localStorage.setItem("access_token", action.payload);
+            return { ...state, isAuthenticated: true };
 
-        case SIGNUP_SHOW_PASSWORD_ERROR:
-            return {
-                ...state,
-                messages: messages(state.messages, action)
-            };
+        case LOG_OUT_USER:
+            localStorage.removeItem("access_token")
+            return { ...state, isAuthenticated: false };
+
+        case SHOW_LOGIN_ERROR:
+            return { ...state, loginError: action.payload }
+
         default:
             return state;
     }
