@@ -1,0 +1,45 @@
+.item-pref {
+    margin: 20px 20px;
+    .item-pref-img-title {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        img {
+            height: 150px;
+        }
+        .item-pref-img-title-inputs {
+            width: 350px;
+        }
+    }
+    .item-pref-selector {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        input {
+        }
+        #item-css-selector {
+            min-width: 300px;
+            // flex-basis: 50%;
+        }
+        #item-attribute-name {
+            // flex-basis: 500px;
+            min-width: 300px;
+        }
+    }
+    .item-pref-buttons {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .save-button {
+            // margin-left: 10px;
+            align-self: flex-start;
+        }
+        .delete-button {
+            // margin-right: 10px;
+            align-self: flex-end;
+        }
+    }
+}

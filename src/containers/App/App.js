@@ -2,16 +2,18 @@ import React, { Component } from "react";
 import "./App.scss";
 
 // Redux
-import {connect} from "react-redux"
+import { connect } from "react-redux";
 
 // React-router
-import { withRouter } from 'react-router-dom'
+import { withRouter, Switch, Route, Redirect } from "react-router-dom";
 
-import Authentication from "../Authentication/Authentication"
+// Components
+import Authentication from "../Authentication/Authentication";
+import Pricetrack from "../Pricetrack/Pricetrack";
 
-const mapStateToProps = (state) => ({
-    isAuthenticated: state.isAuthenticated
-})
+const mapStateToProps = state => ({
+    isAuthenticated: state.authentication.isAuthenticated
+});
 
 class App extends Component {
     render() {
@@ -20,7 +22,10 @@ class App extends Component {
                 {!this.props.isAuthenticated ? (
                     <Authentication />
                 ) : (
-                    <div>User is authenticated</div>
+                    <Switch>
+                        <Route path="/app" component={Pricetrack} />
+                        <Redirect to="/app" />
+                    </Switch>
                 )}
             </div>
         );

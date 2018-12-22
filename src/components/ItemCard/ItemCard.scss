@@ -1,0 +1,24 @@
+.items-card {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    .items-card-svg {
+        width: 80%;
+        // height: 100%;
+    }
+    img {
+        width: 100%;
+    }
+    h4 {
+        margin: 5px;
+    }
+}
+
+.items-card:hover {
+    cursor: pointer;
+    background-color: #efe3c2;
+}

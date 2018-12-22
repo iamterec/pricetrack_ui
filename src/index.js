@@ -7,16 +7,21 @@ import { BrowserRouter } from "react-router-dom";
 
 import Particles from "react-particles-js";
 
-import { createStore, applyMiddleware } from "redux";
+// Redux
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import thunkMiddleware from "redux-thunk";
+import { createLogger } from "redux-logger";
 
+import { application } from "./containers/Pricetrack/PricetrackReducer";
 import { authentication } from "./containers/Authentication/AuthenticationReducer";
-import { createLogger } from "redux-logger"
 
-const rootReducer = authentication;
+const rootReducer = combineReducers({authentication, application})
 const logger = createLogger();
-const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
+const store = createStore(
+    rootReducer,
+    applyMiddleware(thunkMiddleware, logger)
+);
 
 const particlesOptions = {
     particles: {
