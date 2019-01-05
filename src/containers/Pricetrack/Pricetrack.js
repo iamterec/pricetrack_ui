@@ -13,6 +13,13 @@ const mapStateToProps = state => ({
 });
 
 class Pricetrack extends Component {
+    componentDidMount() {
+        document.body.className = "body-app"
+    }
+    componentWillUnmount() {
+        document.body.className = "body-auth"
+    }
+
     render() {
         return (
             <div className="pricetrack">

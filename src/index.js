@@ -16,7 +16,13 @@ import { createLogger } from "redux-logger";
 import { application } from "./containers/Pricetrack/PricetrackReducer";
 import { authentication } from "./containers/Authentication/AuthenticationReducer";
 
-const rootReducer = combineReducers({authentication, application})
+const rootReducer = (state, action) => {
+    if(action.type === "CLEAR_STATE") {
+        state = undefined
+    }
+    return combineReducers({authentication, application})(state, action)
+}
+
 const logger = createLogger();
 const store = createStore(
     rootReducer,
@@ -34,6 +40,7 @@ const particlesOptions = {
         }
     }
 };
+
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>

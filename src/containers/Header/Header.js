@@ -5,7 +5,7 @@ import { server_uri } from "../../config";
 // Redux
 import { connect } from "react-redux";
 import { saveUser } from "./HeaderActions";
-import {logOut} from "../Authentication/AuthenticationActions"
+import { logOut } from "../Authentication/AuthenticationActions";
 
 // Material UI
 import Avatar from "@material-ui/core/Avatar";
@@ -20,7 +20,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     saveUser: user => dispatch(saveUser(user)),
-    logOut: () => dispatch(logOut())
+    logOut: () => dispatch(logOut()),
+    clearState: () => dispatch((() => ({type: "CLEAR_STATE"}))())
 });
 
 class Header extends Component {
@@ -78,8 +79,10 @@ class Header extends Component {
         this.setState({ anchorEl: null });
     }
     onLogout() {
-        this.props.logOut()
-
+        console.log("calling clearState");
+        this.props.clearState();
+        console.log("calling logOut");
+        this.props.logOut();
     }
 
     render() {
