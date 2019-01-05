@@ -1,0 +1,22 @@
+.login-with-google {
+    margin-top: 40px;
+    .login-with-google-btn {
+        padding-right: 10px;
+        display: inline-block;
+        background: #4285f4;
+        cursor: pointer;
+        border-radius: 4px;
+        img {
+            height: 40px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        span {
+            font-family: "Roboto", sans-serif;
+            font-weight: bold;
+            font-size: 15px;
+            color: white;
+            vertical-align: middle;
+        }
+    }
+}

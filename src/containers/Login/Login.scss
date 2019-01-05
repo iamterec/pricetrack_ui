@@ -3,8 +3,22 @@
     background: #e8d5a6;
     // color: #F28355;
     padding: 20px 0;
+    .forgot-password {
+        font-size: 14px;
+        color: #766C54;
+        a {
+            text-decoration: none;
+        }
+        a:visited {
+            color: #766C54;
+        }
+        a:hover {
+            color: #303F9F;
+            text-decoration: underline;
+        }
+    }
     .login-button {
-        margin-top: 30px;
+        margin-top: 15px;
     }
     .login-error {
         color: #ff343c;

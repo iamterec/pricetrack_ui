@@ -6,7 +6,7 @@ import {connect} from "react-redux"
 import {showLoginError, loginUser} from "./LoginActions"
 
 // React-router
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 // MaterialUI
 import TextField from "@material-ui/core/TextField";
@@ -15,6 +15,8 @@ import Button from "@material-ui/core/Button";
 // Data validation
 import { rules } from "./LoginValidation";
 import DataValidator from "../../validation";
+
+const LoginWithGoogle = React.lazy(() => import("./LoginWithGoogle/LoginWithGoogle"))
 
 const styles = {
     textFields: {
@@ -107,6 +109,7 @@ class Login extends Component {
                             onChange={this.onPasswordChange}
                         />
                     </div>
+                    <span className="forgot-password"><Link to="/password-reset">Forgot your password?</Link></span>
                     {Boolean(this.state.error) &&
                     <p className="login-error">{this.state.error}</p>
                     }
@@ -120,6 +123,9 @@ class Login extends Component {
                         >
                             Log in
                         </Button>
+                        <React.Suspense fallback={<div>Loadig...</div>}>
+                            <LoginWithGoogle />
+                        </React.Suspense>
                     </div>
                 </section>
             </main>

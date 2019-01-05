@@ -5,6 +5,8 @@ import { withRouter, Route, Link, Redirect, Switch } from "react-router-dom";
 
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
+import PasswordReset from "../PasswordReset/PasswordReset"
+import PasswordChange from "../PasswordChange/PasswordChange"
 
 class Authentication extends Component {
     getNavLinkClass = path => {
@@ -37,6 +39,8 @@ class Authentication extends Component {
                 <Switch>
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/signup" component={SignUp} />
+                    <Route exact path="/password-reset" component={PasswordReset} />
+                    <Route exact path="/password-change/:token" component={PasswordChange} />
                     <Redirect to="/login" />
                 </Switch>
             </div>

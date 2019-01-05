@@ -16,7 +16,6 @@ if (window.localStorage.getItem("access_token")) {
 export function authentication(state = initStateAuthentication, action = {}) {
     switch (action.type) {
         case AUTHENTICATE_USER:
-            console.log(action.payload)
             localStorage.setItem("access_token", action.payload["access_token"]);
             return { ...state, isAuthenticated: true };
 
