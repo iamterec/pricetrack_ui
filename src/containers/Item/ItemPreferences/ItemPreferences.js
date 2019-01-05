@@ -39,6 +39,7 @@ const mapDispatchToProps = dispatch => ({
 
 class ItemPreferences extends Component {
     render() {
+        const trackingMessage = this.props.item.tracking.message
         return (
             <div className="item-pref">
                 <div className="item-pref-img-title">
@@ -90,14 +91,19 @@ class ItemPreferences extends Component {
                             value={this.props.item.attribute_name}
                             onChange={this.props.onItemAttributeNameChange}
                         />
-                        <div className="item-pref-is-tracking">
-                            Tracking:
-                            <Checkbox
-                                checked={this.props.item.tracking.status === "tracking"}
-                                onChange={this.props.onItemTrackingChange}
-                                value="tracking"
-                                color="primary"
-                            />
+                        <div className="item-tracking">
+                            <div className="item-tracking-checkbox">
+                                Tracking:
+                                <Checkbox
+                                    checked={this.props.item.tracking.status === "tracking"}
+                                    onChange={this.props.onItemTrackingChange}
+                                    value="tracking"
+                                    color="primary"
+                                />
+                            </div>
+                            {Boolean(trackingMessage) && (
+                                <span className="item-tracking-message">{trackingMessage}</span>
+                            )}
                         </div>
                     </div>
                 </div>

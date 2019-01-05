@@ -78,7 +78,10 @@ export const onSaveButtonSubmit = () => (dispatch, getState) => {
         .then(resp => resp.json().then(data => ({ data, isOk: resp.ok })))
         .then(({ data, isOk }) => {
             if (isOk) {
+                console.log("after getting data");
                 console.log(data);
+                dispatch(saveCurrentItem(data["item"])) 
+                // save item here
             } else {
                 console.log("Else", data);
             }

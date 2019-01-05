@@ -14,15 +14,3 @@ export const cachedItemsCardSelector = createCachedSelector(
         return <ItemCard item={item} onClick={onClick} key={item._id} />;
     }
 )((item, onClick, itemId) => itemId);
-
-// return (
-//     <div
-//         className="items-card"
-//         key={item._id}
-//         id={item._id}
-//         onClick={onClick}
-//     >
-//         <h3>{item.title}</h3>
-//         <p>{item._id}</p>
-//     </div>
-// );

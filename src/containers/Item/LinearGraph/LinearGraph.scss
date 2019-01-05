@@ -1,0 +1,13 @@
+.graph-container {
+    // width: 50%;
+    // padding: 30px;
+    margin: 30px;
+    .graph-line-path {
+        // stroke: #445873;
+        stroke: #303F9F;
+
+    }
+    path:hover {
+        stroke: red;;
+    }
+}

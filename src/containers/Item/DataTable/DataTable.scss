@@ -1,0 +1,26 @@
+$table-text-color: #333;
+.data-table {
+    table {
+        color: $table-text-color;
+        margin: 0 auto;
+        width: 80%;
+border-collapse: collapse;
+        tr {
+            margin: 10px;
+            line-height: 36px;
+            border-bottom: 1px solid rgba(68, 88, 115, 0.5);
+        }
+        td {
+            // color: #445873;
+            // border-bottom: 1px solid rgba(68, 88, 115, 1);
+            // border-bottom: 1px solid #FFF;
+        }
+        .data-table-date {
+
+
+        }
+        .data-table-value {
+
+        }
+    }
+}

@@ -1,0 +1,50 @@
+.user-profile {
+    width: 30%;
+    min-height: 300px;
+    padding: 0 20px;
+    background: #e8d5a6;
+    box-shadow: 0 0 100px 10px #aaa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .user-profile-header {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        svg {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+    }
+
+    .user-profile-content {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
+        align-items: center;
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+        }
+        .profile-inputs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+        }
+    }
+    .profile-buttons {
+        bottom: 0;
+        left: 50px;
+        width: 100%;
+        margin: 20px 0;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+    }
+    // .user-profile-close {
+    //     cursor: pointer;
+    // }
+}

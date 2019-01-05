@@ -27,6 +27,13 @@
             // flex-basis: 500px;
             min-width: 300px;
         }
+        .item-tracking-checkbox {
+            display: inline-block;
+        }
+        .item-tracking-message {
+            font-size: 18px;
+            color: red;
+        }
     }
     .item-pref-buttons {
         margin-top: 20px;

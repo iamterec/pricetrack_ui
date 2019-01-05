@@ -1,3 +1,4 @@
+$card-img-height: 100%/1.41;
 .items-card {
     width: 200px;
     height: 200px;
@@ -5,13 +6,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    // justify-content: space-around;
+    justify-content: space-between;
     .items-card-svg {
         width: 80%;
-        // height: 100%;
+        // fill: rgba(68, 88, 115, 1);
+        fill: #263140;
     }
     img {
         width: 100%;
+        // height: 63%;
+        height: $card-img-height;
+        border: 2px solid #e0c685;
+        object-fit: contain;
+        background-color: #FFF;
     }
     h4 {
         margin: 5px;
@@ -19,6 +27,12 @@
 }
 
 .items-card:hover {
+    box-shadow: 0 0 20px 15px #e5d09a;
     cursor: pointer;
-    background-color: #efe3c2;
+    background-color: #FFF;
+}
+
+.items-card:hover img {
+    border: none;
+    border-top: 2px solid #FFF;
 }
