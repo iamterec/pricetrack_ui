@@ -54,8 +54,7 @@ export const onItemAttributeNameChange = attribute => ({
 export const onItemTrackingChange = isTracked => ({
     type: ON_ITEM_TRACKING_CHANGE,
     payload: isTracked
-})
-
+});
 
 // export const onItemTrackingChange = isTracked => ({
 //     type: ON_ITEM_TRACKING_CHANGE,
@@ -64,6 +63,9 @@ export const onItemTrackingChange = isTracked => ({
 
 export const onSaveButtonSubmit = () => (dispatch, getState) => {
     const item = getState().application.item.currentItem;
+    const itemFromList = getState().application.items.listOfItems.find(
+        el => el.id === item.id
+    );
     const accessToken = localStorage.getItem("access_token");
     const url = server_uri + "/items/" + item._id;
     const request = {
@@ -80,8 +82,14 @@ export const onSaveButtonSubmit = () => (dispatch, getState) => {
             if (isOk) {
                 console.log("after getting data");
                 console.log(data);
-                dispatch(saveCurrentItem(data["item"])) 
-                // save item here
+                dispatch(saveCurrentItem(data["item"]));
+                // update listOfItems if title or image has been changed
+                if (
+                    item.title !== itemFromList.title ||
+                    item.image !== itemFromList.image
+                ) {
+                    dispatch(getAllItems());
+                }
             } else {
                 console.log("Else", data);
             }

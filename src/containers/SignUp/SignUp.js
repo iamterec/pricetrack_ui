@@ -11,11 +11,19 @@ import Button from "@material-ui/core/Button";
 import { rules } from "./SignUpValidation";
 import DataValidator from "../../validation";
 
+// Redux
+import { connect } from "react-redux";
+import { loginUser } from "../Login/LoginActions";
+
 const styles = {
     textFields: {
         width: "300px"
     }
 };
+
+const mapDispatchToProps = dispatch => ({
+    loginUser: (email, password) => dispatch(loginUser(email, password))
+});
 
 class SignUp extends Component {
     constructor(props) {
@@ -31,7 +39,7 @@ class SignUp extends Component {
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.onConfirmPasswordChange = this.onConfirmPasswordChange.bind(this);
         this.onButtonSubmit = this.onButtonSubmit.bind(this);
-        this.validateData = this.validateData.bind(this)
+        this.validateData = this.validateData.bind(this);
     }
 
     onEmailChange(event) {
@@ -47,11 +55,11 @@ class SignUp extends Component {
     }
 
     showValidationErrors(validation) {
-        if(validation.email) {
-            this.setState({emailError: validation.email.message})
+        if (validation.email) {
+            this.setState({ emailError: validation.email.message });
         }
-        if(validation.password) {
-            this.setState({passwordError: validation.password.message})
+        if (validation.password) {
+            this.setState({ passwordError: validation.password.message });
         }
     }
 
@@ -85,18 +93,24 @@ class SignUp extends Component {
             .then(({ data, isOk }) => {
                 if (data["errors"] && !isOk) {
                     const validation = {
-                        email:{},
+                        email: {},
                         password: {}
-                    }
+                    };
                     if (data.errors.email) {
                         validation.email.message = data.errors.email.join(", ");
                     }
                     if (data.errors.password) {
-                        validation.password.message = data.errors.password.join(", ");
+                        validation.password.message = data.errors.password.join(
+                            ", "
+                        );
                     }
-                    this.showValidationErrors(validation)
+                    this.showValidationErrors(validation);
                 }
-                console.log(data.msg)
+
+                if (isOk) {
+                    this.props.loginUser(email, password);
+                }
+                console.log(data.msg);
             })
             .catch(error => {
                 console.log(error);
@@ -104,12 +118,12 @@ class SignUp extends Component {
     }
 
     onButtonSubmit() {
-        const validation = this.validateData()
-        if(validation.isValid) {
-            console.log("Sending request...")
-            this.signUpUser(this.state.email, this.state.password)
+        const validation = this.validateData();
+        if (validation.isValid) {
+            console.log("Sending request...");
+            this.signUpUser(this.state.email, this.state.password);
         } else {
-            this.showValidationErrors(validation)
+            this.showValidationErrors(validation);
         }
     }
 
@@ -172,4 +186,7 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp;
+export default connect(
+    undefined,
+    mapDispatchToProps
+)(SignUp);
