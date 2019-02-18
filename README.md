@@ -1,26 +1,27 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pricetrack
 
-## Available Scripts
+![some gif](https://thumbs.gfycat.com/RectangularIllfatedKitty-size_restricted.gif)
 
-In the project directory, you can run:
+This is a frontend for Pricetrack application.<br>
+[Backend part of the application can be found here](https://github.com/iamterec/pricetrack_api)
 
-### `npm start`
+## About Pricetrack
+This application will allow you to track some numeric information from third party sites.
+You just need to fill page url and css selector and application will parce matched numeric information every hour and save to database.
+You will able to see this information in graph and table.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Used technologies
+This fronend part of the application built on top of React and Redux. It also uses D3.js, reselect, react-router, redux-thunk, validator and gapi for authentication with google. <br>
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## How to run this
+It uses [create-react-app](https://github.com/facebook/create-react-app) so you can type:
+```shell
+npm start
+```
+to run the app in the development mode.<br>
+Or:
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```shell
+npm run build
+```
+to build the app for production to the `build folder`.
